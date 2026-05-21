@@ -13,7 +13,7 @@
 
 <br/>
 
-> An AI-powered interview proctoring system that uses lightweight computer vision models and an **event-driven architecture** to detect suspicious behavior — delivering intelligent evaluation reports at a fraction of the cost of traditional LLM-heavy approaches.
+> An AI-powered interview proctoring system that uses lightweight computer vision models and an **event-driven architecture** to detect suspicious behavior and delivering intelligent evaluation reports at a fraction of the cost of traditional LLM-heavy approaches.
 
 <br/>
 
@@ -260,11 +260,6 @@ Logs a browser tab-switch event from the frontend.
 
 ---
 
-## 📄 License
-
-This project is intended for **educational and research purposes only**.
-
----
 
 ## 👤 Author
 
