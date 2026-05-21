@@ -1,3 +1,5 @@
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 export default function ReportPanel({
   reportData
 }) {
@@ -17,7 +19,8 @@ export default function ReportPanel({
       padding: "20px",
       border: "1px solid #ccc",
       borderRadius: "12px",
-      width: "800px",
+      maxWidth: "1100px",
+      width: "95%",       
       backgroundColor: "#1e293b",
       color: "white",
       boxShadow: "0 0 20px rgba(0,0,0,0.3)"
@@ -79,12 +82,21 @@ export default function ReportPanel({
 
       <h2>LLM Analysis</h2>
 
-      <div style={{
-        whiteSpace: "pre-wrap",
-        lineHeight: "1.7"
-      }}>
-        {report}
-      </div>
+<div style={{
+  lineHeight: "1.8",
+  marginTop: "20px",
+  overflowX: "auto",
+  fontSize: "16px",
+textAlign: "left"
+}}>
+
+<ReactMarkdown
+  remarkPlugins={[remarkGfm]}
+>
+  {report}
+</ReactMarkdown>
+
+</div>
 
     </div>
   );
