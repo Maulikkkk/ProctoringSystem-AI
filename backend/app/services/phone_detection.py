@@ -1,10 +1,18 @@
 from ultralytics import YOLO
 
-model = YOLO("yolov8n.pt")
+model = YOLO("yolov8s.pt")
+
+phone_memory = 0
 
 def detect_phone(image):
 
+    global phone_memory
+
     results = model(image)
+
+    detections = []
+
+    phone_found = False
 
     for r in results:
 
@@ -16,7 +24,42 @@ def detect_phone(image):
 
             label = model.names[cls]
 
-            if label == "cell phone":
-                return True
+            confidence = float(box.conf[0])
 
-    return False
+            if (
+                label == "cell phone"
+                and confidence > 0.35
+            ):
+
+                phone_found = True
+
+                x1, y1, x2, y2 = map(
+                    int,
+                    box.xyxy[0]
+                )
+
+                detections.append({
+                    "label": "phone",
+                    "x1": x1,
+                    "y1": y1,
+                    "x2": x2,
+                    "y2": y2
+                })
+
+    # INSTANT DETECTION
+    if phone_found:
+
+        phone_memory = 3
+
+        return detections
+
+    # SMOOTH EXIT
+    else:
+
+        if phone_memory > 0:
+
+            phone_memory -= 1
+
+            return detections
+
+    return []
